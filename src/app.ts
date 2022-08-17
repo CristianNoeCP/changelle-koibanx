@@ -10,3 +10,4 @@ app.use(
 );
 app.use("/api", storeRoute);
 app.listen(3000);
+console.log("🚀🚀🚀 server in 3000");
