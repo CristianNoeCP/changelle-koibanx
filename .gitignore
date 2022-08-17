@@ -5,3 +5,7 @@ package-lock.json
 .vscode/*
 .env
 .DS_STORE
+dist/
+.tmp
+data
+test-results.xml
