@@ -1,7 +1,9 @@
 import express from "express";
 export const app = express();
 import storeRoute from "./routes/stores.route";
-// Start the server
+import dotenv from "dotenv";
+
+dotenv.config();
 app.use(express.json());
 app.use(
   express.urlencoded({
