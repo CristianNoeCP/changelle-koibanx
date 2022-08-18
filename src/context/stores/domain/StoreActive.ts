@@ -7,7 +7,7 @@ export class StoreActive {
     this.value = value;
   }
   private guard(value: boolean): void {
-    if (typeof value === "boolean") {
+    if (value !== true && value !== false) {
       throw new InvalidArgumentError("active is not a boolean");
     }
   }
