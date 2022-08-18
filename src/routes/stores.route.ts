@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import { StoreCreator } from "../context/stores/application/StoreCreator";
 import { StoresByCriteriaSearcher } from "../context/stores/application/StoresByCriteriaSearcher";
 import { MongoStoreRepository } from "../context/stores/infrastructures/MongoStoreRepository";
 import { StoresGetController } from "../controllers/StoresGetController";
@@ -9,7 +10,7 @@ const storesGetController = new StoresGetController(
 );
 
 const storesPostController = new StoresPostController(
-  new StoresByCriteriaSearcher(new MongoStoreRepository())
+  new StoreCreator(new MongoStoreRepository())
 );
 
 router
