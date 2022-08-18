@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Bread",
+    "cuit": "20-303030-3030",
+    "concepts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "currentBalance": 1000,
+    "active": true,
+    "lastSale": "2022-08-16T17:52:51.000Z"
+  }
+]

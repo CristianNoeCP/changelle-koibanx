@@ -7,6 +7,18 @@ services:
       - 27017:27017
     networks:
       - "network"
+
+  mongo_seed:
+    container_name: seed
+    build: ./mongoseed
+    networks:
+      - "network"
+    depends_on:
+      - mongo
+
+volumes:
+  db:
+    driver: local
 networks:
   network:
     name: "koibanxs"
