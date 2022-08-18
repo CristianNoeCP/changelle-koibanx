@@ -17,6 +17,7 @@ StoreSchema.pre("save", async function (callback) {
 });
 
 export interface IStore extends Document {
+  _id: string;
   name: String;
   cuit: String;
   concepts: Array<string | number>;
