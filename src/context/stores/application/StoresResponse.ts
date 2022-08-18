@@ -3,18 +3,18 @@ import { IStore } from "../domain/Store";
 export class StoresResponse {
   readonly stores: Array<IStore>;
   readonly limit: number;
-  readonly offset: number;
+  readonly page: number;
   readonly count: number;
 
   constructor(
     stores: Array<IStore>,
     limit: number,
-    offset: number,
+    page: number,
     count: number
   ) {
     this.stores = stores;
     this.limit = limit;
-    this.offset = offset;
+    this.page = page;
     this.count = count;
   }
 }

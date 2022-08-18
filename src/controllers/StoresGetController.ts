@@ -8,11 +8,11 @@ export class StoresGetController implements Controller {
 
   async run(_req: Request, res: Response) {
     const { query: queryParams } = _req;
-    const { filters, limit, offset } = queryParams;
+    const { q: filter, limit, page } = queryParams;
     const queryResponse = await this.storesByCriteriaSearcher.run(
-      filters ? filters : undefined,
+      filter ? (filter as string) : "{}",
       Number(limit) || 15,
-      Number(offset) || 0
+      Number(page) || 1
     );
     res.header("Access-Control-Allow-Origin", "*");
     res
@@ -21,7 +21,7 @@ export class StoresGetController implements Controller {
         this.toResponse(
           queryResponse.stores,
           queryResponse.limit,
-          queryResponse.offset,
+          queryResponse.page,
           queryResponse.count
         )
       );
@@ -30,7 +30,7 @@ export class StoresGetController implements Controller {
   private toResponse(
     stores: Array<IStore>,
     limit: number,
-    offset: number,
+    page: number,
     count: number
   ) {
     const data = stores.map((store) => {
@@ -51,7 +51,7 @@ export class StoresGetController implements Controller {
     });
     return {
       data,
-      page: offset,
+      page: page,
       limit,
       pages: Math.ceil(count / limit),
       count,
