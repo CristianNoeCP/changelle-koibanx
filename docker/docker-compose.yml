@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  mongo:
+    image: mongo:5.0
+    container_name: koibanxsmongo
+    ports:
+      - 27017:27017
+    networks:
+      - "network"
+networks:
+  network:
+    name: "koibanxs"
