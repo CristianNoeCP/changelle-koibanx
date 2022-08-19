@@ -8,7 +8,7 @@ export const UserSchema = new Schema<IUser>(
   },
   { timestamps: true }
 );
-export interface IUser extends Document {
+export interface IUser {
   _id: string | undefined;
   username: string;
   password: string;

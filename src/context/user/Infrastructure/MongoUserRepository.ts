@@ -1,5 +1,5 @@
 import Mongoose from "mongoose";
-import { UserRepository } from "../application/UserRepository";
+import { UserRepository } from "../domain/UserRepository";
 import { IUser, UserModel } from "../domain/user";
 
 export class MongoUserRepository implements UserRepository {

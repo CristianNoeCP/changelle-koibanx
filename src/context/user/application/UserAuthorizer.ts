@@ -1,6 +1,6 @@
 import { InvalidArgumentError } from "../../shared/domain/InvalidArgumentError";
-import { UserRepository } from "./UserRepository";
-import { EncryptedData } from "./EncryptedData";
+import { UserRepository } from "../domain/UserRepository";
+import { EncryptedData } from "../domain/EncryptedData";
 
 export class UserAuthorizer {
   constructor(
