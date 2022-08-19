@@ -3,7 +3,7 @@ import httpStatus from "http-status";
 import { InvalidArgumentError } from "../context/shared/domain/InvalidArgumentError";
 import { UserAuthorizer } from "../context/user/application/UserAuthorizer";
 
-export class AuthValidateController {
+export class AuthValidate {
   constructor(private userAuthorizer: UserAuthorizer) {}
   async run(req: Request, res: Response, next: NextFunction) {
     try {

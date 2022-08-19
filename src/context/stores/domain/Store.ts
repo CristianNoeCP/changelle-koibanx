@@ -55,7 +55,7 @@ export class Store {
 
   toPrimitives() {
     return {
-      ...(this._id && { id: this._id.value }),
+      ...(this._id && { _id: this._id.value }),
       name: this.name.value,
       cuit: this.cuit.value,
       concepts: this.concepts.value,

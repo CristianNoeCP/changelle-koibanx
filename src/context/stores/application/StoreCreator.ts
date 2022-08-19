@@ -6,7 +6,7 @@ import { StoreCurrentBalance } from "../domain/StoreCurrentBalance";
 import { StoreLastSale } from "../domain/StoreLastSale";
 import { StoreName } from "../domain/StoreName";
 import { StoreRepository } from "../domain/StoreRepository";
-type Params = {
+export type Params = {
   name: string;
   cuit: string;
   concepts: Array<string>;
