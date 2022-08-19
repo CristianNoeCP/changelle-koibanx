@@ -13,7 +13,7 @@ export class StoresPostController implements Controller {
       const concepts: Array<string> = body.concepts;
       const currentBalance: number = body.currentBalance;
       const active: boolean = body.active;
-      const lastSale: string = body.lastSale;
+      const lastSale: Date = body.lastSale;
       await this.storesCreator.run({
         name,
         cuit,

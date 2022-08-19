@@ -1,29 +1,67 @@
-import { Schema, model } from "mongoose";
+import { StoreName } from "./StoreName";
+import { StoreCuit } from "./StoreCuit";
+import { StoreConcepts } from "./StoreConcepts";
+import { StoreCurrentBalance } from "./StoreCurrentBalance";
+import { StoreActive } from "./StoreActive";
+import { StoreLastSale } from "./StoreLastSale";
+import { StoreId } from "./StoreId";
 
-const StoreSchema = new Schema(
-  {
-    name: String,
-    cuit: String,
-    concepts: Array,
-    currentBalance: Number,
-    active: Boolean,
-    lastSale: Date,
-  },
-  { timestamps: true }
-);
+export class Store {
+  readonly _id: StoreId | undefined;
+  readonly name: StoreName;
+  readonly cuit: StoreCuit;
+  readonly concepts: StoreConcepts;
+  readonly currentBalance: StoreCurrentBalance;
+  readonly active: StoreActive;
+  readonly lastSale: StoreLastSale;
 
-StoreSchema.pre("save", async function (callback) {
-  //completar de ser necesario
-});
+  constructor(
+    name: StoreName,
+    cuit: StoreCuit,
+    concepts: StoreConcepts,
+    currentBalance: StoreCurrentBalance,
+    active: StoreActive,
+    lastSale: StoreLastSale,
+    _id?: StoreId
+  ) {
+    this._id = _id;
+    this.name = name;
+    this.cuit = cuit;
+    this.concepts = concepts;
+    this.currentBalance = currentBalance;
+    this.active = active;
+    this.lastSale = lastSale;
+  }
 
-export interface IStore extends Document {
-  _id: string;
-  name: String;
-  cuit: String;
-  concepts: Array<string | number>;
-  currentBalance: Number;
-  active: Boolean;
-  lastSale: Date;
+  static fromPrimitives(plainData: {
+    name: string;
+    cuit: string;
+    concepts: Array<string>;
+    currentBalance: number;
+    active: boolean;
+    lastSale: Date;
+    _id?: string;
+  }): Store {
+    return new Store(
+      new StoreName(plainData.name),
+      new StoreCuit(plainData.cuit),
+      new StoreConcepts(plainData.concepts),
+      new StoreCurrentBalance(plainData.currentBalance),
+      new StoreActive(plainData.active),
+      new StoreLastSale(plainData.lastSale),
+      plainData._id ? new StoreId(plainData._id) : undefined
+    );
+  }
+
+  toPrimitives() {
+    return {
+      ...(this._id && { id: this._id.value }),
+      name: this.name.value,
+      cuit: this.cuit.value,
+      concepts: this.concepts.value,
+      currentBalance: this.currentBalance.value,
+      active: this.active.value,
+      lastSale: this.lastSale.value,
+    };
+  }
 }
-
-export const store = model<IStore>("Store", StoreSchema);

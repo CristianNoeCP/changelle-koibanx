@@ -1,13 +1,13 @@
-import { IStore } from "../domain/Store";
+import { Store } from "../domain/Store";
 
 export class StoresResponse {
-  readonly stores: Array<IStore>;
+  readonly stores: Array<Store>;
   readonly limit: number;
   readonly page: number;
   readonly count: number;
 
   constructor(
-    stores: Array<IStore>,
+    stores: Array<Store>,
     limit: number,
     page: number,
     count: number

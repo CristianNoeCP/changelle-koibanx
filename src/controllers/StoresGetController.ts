@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import httpStatus from "http-status";
 import { InvalidArgumentError } from "../context/shared/domain/InvalidArgumentError";
 import { StoresByCriteriaSearcher } from "../context/stores/application/StoresByCriteriaSearcher";
-import { IStore } from "../context/stores/domain/Store";
+import { Store } from "../context/stores/domain/Store";
 import { Controller } from "./Controller";
 export class StoresGetController implements Controller {
   constructor(private storesByCriteriaSearcher: StoresByCriteriaSearcher) {}
@@ -37,25 +37,25 @@ export class StoresGetController implements Controller {
   }
 
   private toResponse(
-    stores: Array<IStore>,
+    stores: Array<Store>,
     limit: number,
     page: number,
     count: number
   ) {
     const data = stores.map((store) => {
       return {
-        ID: store._id,
-        Comercio: store.name,
-        CUIT: store.cuit,
-        Conceptos: store.concepts,
+        ID: store._id?.value,
+        Comercio: store.name.value,
+        CUIT: store.cuit.value,
+        Conceptos: store.concepts.value,
         "Balance actual:": Intl.NumberFormat("en-US").format(
-          +store.currentBalance
+          +store.currentBalance.value
         ),
-        Activo: store.active ? "Si" : "No",
+        Activo: store.active.value ? "Si" : "No",
         "Última venta": Intl.DateTimeFormat("en-US", {
           dateStyle: "medium",
           timeStyle: "short",
-        }).format(store.lastSale),
+        }).format(store.lastSale.value),
       };
     });
     return {

@@ -1,9 +1,10 @@
 import { StoreRepository } from "../domain/StoreRepository";
 import Mongoose from "mongoose";
-import { store } from "../domain/Store";
+import { store } from "../domain/StoreSchema";
 import { StoreFilter } from "../domain/StoreFilter";
 import { StoreLimit } from "../domain/StoreLimit";
 import { StorePage } from "../domain/StorePage";
+import { Store } from "../domain/Store";
 
 export class MongoStoreRepository implements StoreRepository {
   private client() {
@@ -21,6 +22,12 @@ export class MongoStoreRepository implements StoreRepository {
     await this.disconnected();
     return count;
   }
+  public async save(storeParams: Store): Promise<void> {
+    await this.client();
+    const newStore = new store(storeParams.toPrimitives());
+    console.log(await newStore.save());
+    await this.disconnected();
+  }
   public async matching(
     filter: StoreFilter,
     limit: StoreLimit,
@@ -32,6 +39,6 @@ export class MongoStoreRepository implements StoreRepository {
       .skip((page.value - 1) * limit.value)
       .limit(limit.value);
     await this.disconnected();
-    return stores;
+    return stores ? stores.map(store => Store.fromPrimitives(store)) : []; 
   }
 }

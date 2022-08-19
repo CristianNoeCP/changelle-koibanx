@@ -1,3 +1,4 @@
+import { Store } from "../domain/Store";
 import { StoreActive } from "../domain/StoreActive";
 import { StoreConcepts } from "../domain/StoreConcepts";
 import { StoreCuit } from "../domain/StoreCuit";
@@ -11,7 +12,7 @@ type Params = {
   concepts: Array<string>;
   currentBalance: number;
   active: boolean;
-  lastSale: string;
+  lastSale: Date;
 };
 export class StoreCreator {
   constructor(private storeRepository: StoreRepository) {}
@@ -29,17 +30,15 @@ export class StoreCreator {
     const storeCurrentBalance = new StoreCurrentBalance(currentBalance);
     const storeActive = new StoreActive(active);
     const storeLastSale = new StoreLastSale(lastSale);
-    console.log(
-      {
-        storeName,
-        storeCuit,
-        storeConcepts,
-        storeCurrentBalance,
-        storeActive,
-        storeLastSale,
-      },
-      this.storeRepository
+    const store = new Store(
+      storeName,
+      storeCuit,
+      storeConcepts,
+      storeCurrentBalance,
+      storeActive,
+      storeLastSale
     );
+    await this.storeRepository.save(store);
 
     return true;
   }
