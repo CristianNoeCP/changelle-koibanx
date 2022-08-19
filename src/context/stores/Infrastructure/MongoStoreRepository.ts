@@ -25,7 +25,6 @@ export class MongoStoreRepository implements StoreRepository {
   public async save(storeParams: Store): Promise<void> {
     await this.client();
     const newStore = new store(storeParams.toPrimitives());
-    console.log(await newStore.save());
     await this.disconnected();
   }
   public async matching(
@@ -39,6 +38,6 @@ export class MongoStoreRepository implements StoreRepository {
       .skip((page.value - 1) * limit.value)
       .limit(limit.value);
     await this.disconnected();
-    return stores ? stores.map(store => Store.fromPrimitives(store)) : []; 
+    return stores ? stores.map((store) => Store.fromPrimitives(store)) : [];
   }
 }

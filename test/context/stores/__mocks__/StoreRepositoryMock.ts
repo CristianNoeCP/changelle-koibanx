@@ -22,14 +22,19 @@ export class StoreRepositoryMock implements StoreRepository {
   }
   async count(filter: StoreFilter): Promise<number> {
     this.mockCount(filter);
-    return 1;
+    return this.stores.length;
   }
+  returnMatching(stores: Array<Store>) {
+    this.stores = stores;
+  }
+
   assertLastSavedStoreIs(expected: Store): void {
     const mock = this.mockSave.mock;
     const lastSavedStore = mock.calls[mock.calls.length - 1][0] as Store;
-    console.log({ lastSavedStore }, { expected });
-
     expect(lastSavedStore).toBeInstanceOf(Store);
     expect(lastSavedStore.toPrimitives()).toEqual(expected.toPrimitives());
+  }
+  assertMatchingHasBeenCalledWith() {
+    expect(this.mockMatching).toHaveBeenCalled();
   }
 }
