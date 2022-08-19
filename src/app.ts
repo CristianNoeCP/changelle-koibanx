@@ -2,9 +2,7 @@ import express from "express";
 export const app = express();
 import storeRoute from "./routes/stores.route";
 import * as dotenv from "dotenv";
-import { init } from "./init/init";
 dotenv.config({ path: __dirname + "/.env" });
-init();
 app.use(express.json());
 app.use(
   express.urlencoded({

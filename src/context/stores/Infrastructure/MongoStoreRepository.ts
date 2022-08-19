@@ -24,7 +24,7 @@ export class MongoStoreRepository implements StoreRepository {
   }
   public async save(storeParams: Store): Promise<void> {
     await this.client();
-    const newStore = new store(storeParams.toPrimitives());
+    new store(storeParams.toPrimitives());
     await this.disconnected();
   }
   public async matching(

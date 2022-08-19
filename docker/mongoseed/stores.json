@@ -1,6 +1,6 @@
 [
   {
-    "name": "Bread",
+    "name": "store1",
     "cuit": "20-303030-3030",
     "concepts": [
       "1",
@@ -12,5 +12,35 @@
     "currentBalance": 1000,
     "active": true,
     "lastSale": "2022-08-16T17:52:51.000Z"
+  },
+  {
+    "name": "store2",
+    "cuit": "1121313",
+    "concepts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "currentBalance": 30000,
+    "active": true,
+    "lastSale": "2022-05-16T17:52:51.000Z"
+  },
+  {
+    "name": "store3",
+    "cuit": "1121313",
+    "concepts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "currentBalance": 10000,
+    "active": true,
+    "lastSale": "2022-05-16T17:52:51.000Z"
   }
 ]
