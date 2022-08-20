@@ -7,8 +7,8 @@ export class StoreConcepts {
     this.value = value;
   }
   private guard(value: Array<String>): void {
-    if (!Array.isArray(value)) {
-      throw new InvalidArgumentError("concepts is not an array");
+    if (!Array.isArray(value) || value.length === 0) {
+      throw new InvalidArgumentError("concepts is not an array valid");
     }
   }
 }

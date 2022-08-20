@@ -7,8 +7,8 @@ export class StoreCurrentBalance {
     this.value = value;
   }
   private guard(value: number): void {
-    if (!!isNaN(value)) {
-      throw new InvalidArgumentError("currentBalance is not a number");
+    if (!!isNaN(value) || value < 0) {
+      throw new InvalidArgumentError("currentBalance is not a number valid");
     }
   }
 }
