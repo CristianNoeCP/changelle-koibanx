@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "7bf7c5e7-cf7c-44d5-b175-2df075936bbc",
+		"name": "coibanx",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create store",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test@koibanx.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "test123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"111\",\n  \"cuit\": \"111\",\n  \"concepts\":[\"1\"],\n  \"currentBalance\": \"11\",\n  \"active\": true,\n  \"lastSale\": \"2022-08-16T17:52:51.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/stores?q={\"name\": \"store1\"}&limit=5&page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"stores"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{\"name\": \"store1\"}"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get stores",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test@koibanx.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "test123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/stores?q={\"name\": \"store1\"}&limit=5&page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"stores"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{\"name\": \"store1\"}"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
